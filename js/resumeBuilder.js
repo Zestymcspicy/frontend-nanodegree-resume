@@ -13,7 +13,7 @@ const model = {
 
     welcomeMessage : "Hey! Hey!",
     skills : ["JavaScript","jQuery","HTML","CSS","American Cuisine","Cat Herding"],
-    biopic : "https://www.halbeckerman.com",
+    biopic : "images/fry.jpg",
     display : function() {},
   },
 
@@ -61,4 +61,44 @@ const model = {
   display : function () {},
 },
 
+  projects : {
+    projects : [
+  {
+    title : "Cat Clicker",
+    dates : "7/15/2018 - 7/22/2018",
+    description : "Cat clicker project for udacity",
+    images : ["images/197x148.gif"]
+  }
+],
+  display : function () {},
 }
+};
+
+const controller = {
+
+  init : function () {
+    view.renderBio();
+  },
+
+  passBio : function () {
+    return model.bio;
+  },
+};
+
+const view = {
+
+  renderBio : function () {
+
+    let myBio = controller.passBio();
+    let headerName = HTMLheaderName.replace("%data%", myBio.name);
+    let headerRole = HTMLheaderRole.replace("%data%", myBio.role);
+    $("#header").append(headerName, headerRole);
+    let mobile = HTMLmobile.replace("%data%", myBio.contacts.mobile);
+    let email = HTMLemail.replace("%data%", myBio.contacts.email);
+    let gitHub = HTMLgithub.replace("%data%", myBio.contacts.github);
+    let location = HTMLlocation.replace("%data%", myBio.contacts.location);
+    $("#topContacts").append(mobile, email, gitHub, location);
+  }
+}
+
+controller.init();
